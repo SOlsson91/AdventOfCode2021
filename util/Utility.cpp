@@ -50,3 +50,11 @@ std::vector<std::string> Utility::SplitString(const std::string& line)
 	return {std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>()};
 
 }
+
+bool MatchRegexInString(const std::regex& regex, const std::string& line, std::smatch& match)
+{
+	std::regex_search(line, match, regex);
+	if (!match.empty())
+		return true;
+	return false;
+}

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include <iostream>
 #include <map>
@@ -8,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <iterator>
+#include <regex>
 #include "Timer.h"
 
 class Utility
@@ -39,4 +39,5 @@ public:
 	static std::vector<uint32_t> ReadFromFileToInt(const std::string& file);
 	static std::vector<std::string> ReadFromFileToString(const std::string& file);
 	static std::vector<std::string> SplitString(const std::string& line);
+	static bool MatchRegexInString(std::regex regex, const std::string& line, std::smatch& match);
 };
