@@ -21,6 +21,20 @@ std::vector<uint32_t> Utility::ReadFromFileToInt(const std::string& inputFile)
 	}
 	return data;
 }
+std::vector<unsigned char> ReadFromFileToByte(const std::string& inputFile)
+{
+	std::streampos fileSize;
+	std::ifstream file(inputFile, std::ios::binary);
+
+	file.seekg(0, std::ios::end);
+	fileSize = file.tellg();
+	file.seekg(0, std::ios::beg);
+
+	std::vector<unsigned char> data(fileSize);
+	file.read(reinterpret_cast<char*>(&data[0]), fileSize);
+
+	return data;
+}
 
 std::vector<std::string> Utility::ReadFromFileToString(const std::string& inputFile)
 {
@@ -51,10 +65,22 @@ std::vector<std::string> Utility::SplitString(const std::string& line)
 
 }
 
-bool MatchRegexInString(const std::regex& regex, const std::string& line, std::smatch& match)
+bool Utility::MatchRegexInString(const std::regex& regex, const std::string& line, std::smatch& match)
 {
 	std::regex_search(line, match, regex);
 	if (!match.empty())
 		return true;
 	return false;
+}
+
+uint32_t Utility::StringToBinary(const std::string& input)
+{
+	uint32_t val = 0, temp = 1, len = input.length();
+	for (int i = len - 1; i >= 0; i--)
+	{
+		if (input[i] == '1')
+			val += temp;
+		temp = temp * 2;
+   }
+   return val;
 }
