@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <array>
 #include <iostream>
 #include <map>
 #include <string>
@@ -42,4 +43,5 @@ public:
 	static std::vector<std::string> SplitString(const std::string& line);
 	static bool MatchRegexInString(const std::regex& regex, const std::string& line, std::smatch& match);
 	static uint32_t StringToBinary(const std::string& input);
+	static std::vector<uint32_t> SplitStringToInt(const std::string& line, const std::string& delimiter);
 };
