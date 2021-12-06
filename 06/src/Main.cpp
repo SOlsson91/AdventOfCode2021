@@ -3,8 +3,7 @@
 uint64_t GetNumberOfLantenFishAfter(const std::vector<uint32_t>& fishInput, const uint32_t days)
 {
 	Timer t;
-	std::map<uint32_t, uint64_t> EmptyMap = {{0,0},{1,0},{2,0},{3,0},{4,0},{5,0},{6,0},{7,0},{8,0}};
-	std::map<uint32_t, uint64_t> lanternFishs = EmptyMap;
+	std::array<uint64_t, 9> lanternFishs{};
 
 	for (const auto& i : fishInput)
 	{
@@ -13,27 +12,21 @@ uint64_t GetNumberOfLantenFishAfter(const std::vector<uint32_t>& fishInput, cons
 
 	for (uint32_t day = 0; day < days; day++)
 	{
-
-		std::map<uint32_t, uint64_t> dayMap;
+		std::array<uint64_t, 9> dayMap{};
 		for (uint32_t index = 0; index < 9; index++)
 		{
 			if (index == 0)
 			{
 				dayMap[8] += lanternFishs[index];
 				dayMap[6] += lanternFishs[index];
+				continue;
 			}
-			else
-				dayMap[index - 1] += lanternFishs[index];
+			dayMap[index - 1] += lanternFishs[index];
 		}
 		lanternFishs = dayMap;
 	}
 
-	uint64_t sum = 0;
-	for (const auto& i : lanternFishs)
-	{
-		sum += i.second;
-	}
-	return sum;
+	return std::accumulate(std::begin(lanternFishs), std::end(lanternFishs), 0LL);
 }
 
 int main()

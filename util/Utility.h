@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <numeric>
 #include <array>
 #include <iostream>
 #include <map>
