@@ -5,10 +5,9 @@ uint64_t GetNumberOfLantenFishAfter(const std::vector<uint32_t>& fishInput, cons
 	Timer t;
 	std::array<uint64_t, 9> lanternFishs{};
 
-	for (const auto& i : fishInput)
-	{
+	std::for_each(std::begin(fishInput), std::end(fishInput), [&lanternFishs](const uint32_t i){
 		lanternFishs[i]++;
-	}
+	});
 
 	for (uint32_t day = 0; day < days; day++)
 	{
