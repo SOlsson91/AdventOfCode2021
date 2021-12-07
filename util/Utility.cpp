@@ -64,28 +64,6 @@ std::vector<std::string> Utility::SplitString(const std::string& line)
 	return {std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>()};
 }
 
-std::vector<uint32_t> Utility::SplitStringToInt(const std::string& line, const std::string& delimiter)
-{
-	std::vector<uint32_t> numbers;
-	std::string s = line;
-
-	size_t pos = 0;
-	std::string token;
-	while ((pos = s.find(delimiter)) != std::string::npos)
-	{
-		token = s.substr(0, pos);
-		numbers.emplace_back(std::stoi(token));
-		s.erase(0, pos + delimiter.length());
-	}
-	//TODO: Proper check for last character.
-	if (s.size() != 0)
-	{
-		numbers.emplace_back(std::stoi(s));
-	}
-	return numbers;
-}
-
-
 bool Utility::MatchRegexInString(const std::regex& regex, const std::string& line, std::smatch& match)
 {
 	std::regex_search(line, match, regex);
