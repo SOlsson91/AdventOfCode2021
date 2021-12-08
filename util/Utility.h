@@ -20,6 +20,7 @@ public:
 	static std::vector<unsigned char> ReadFromFileToByte(const std::string& file);
 	static std::vector<std::string> ReadFromFileToString(const std::string& file);
 	static std::vector<std::string> SplitString(const std::string& line);
+	static std::vector<std::string> SplitStringDelimiter(const std::string& line, const std::string& delimiter);
 	static bool MatchRegexInString(const std::regex& regex, const std::string& line, std::smatch& match);
 	static uint32_t StringToBinary(const std::string& input);
 

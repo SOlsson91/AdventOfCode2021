@@ -63,6 +63,26 @@ std::vector<std::string> Utility::SplitString(const std::string& line)
 	std::istringstream iss(line);
 	return {std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>()};
 }
+std::vector<std::string> SplitStringDelimiter(const std::string& line, const std::string& delimiter)
+{
+	std::vector<std::string> strings;
+	std::string s = line;
+
+	size_t pos = 0;
+	std::string token;
+	while ((pos = s.find(delimiter)) != std::string::npos)
+	{
+		token = s.substr(0, pos);
+		strings.emplace_back(token);
+		s.erase(0, pos + delimiter.length());
+	}
+	//TODO: Proper check for last character.
+	if (s.size() != 0)
+	{
+		strings.emplace_back(s);
+	}
+		return strings;
+}
 
 bool Utility::MatchRegexInString(const std::regex& regex, const std::string& line, std::smatch& match)
 {
